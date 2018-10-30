@@ -1,0 +1,47 @@
+<div class="container">
+
+  <div class="deck">
+    <label for="deck">Deck</label>
+      <ol>
+        <li *ngFor="let card of deck">
+          {{card.Suit}} {{card.Value}}</li>
+      </ol>
+  </div>
+
+  <div class="drawButton">
+    <button type="button" name="button" (click)="drawCard()">Draw</button>
+  </div>
+  <div class="resetButton">
+    <button type="button" name="button" (click)="reset()">Reset</button>
+  </div>
+
+  <div class="hand">
+    <label for="hand">Hand</label>
+      <ol>
+        <li *ngFor="let card of hand">
+          {{card.Suit}} {{card.Value}}</li>
+      </ol>
+  </div>
+
+  <div class="filters">
+    <div class="filterByHand" (change)="filterByHand($event)">
+      <label for="filterByHand">Filter By Hand - Enter 1-52 </label>
+        <input type="number" min="1" max="52">
+    </div>
+    <div class="filterBySuit" *ngFor="let suit of suits" (change)="filterBySuit($event)">
+        <input type="checkbox" name="suit" value="{{suit}}">{{suit}}<br>
+    </div>
+    <div class="filterByMin">
+      <label for="filterByMin">Filter By Min</label>
+        <select (change)="filterByMin($event)">
+          <option *ngFor="let value of values" value="{{value}}">{{value}}</option>
+        </select>
+    </div>
+    <div class="filterByMax">
+      <label for="filterByMax">Filter By Max</label>
+        <select (change)="filterByMax($event)">
+          <option *ngFor="let value of values" value="{{value}}">{{value}}</option>
+        </select>
+    </div>
+  </div>
+</div>
