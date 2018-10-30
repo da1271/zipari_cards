@@ -17,7 +17,6 @@ export class CardsComponent implements OnInit {
 
   ngOnInit() {
     this.createDeck();
-    console.log(this.deck)
   };
 
   createDeck(){   // creates deck in an Array of Objects with key-value pairs: value, suit and weight (meaning how heavy or true value of card)
@@ -40,13 +39,13 @@ export class CardsComponent implements OnInit {
                   weight = 14;
                   break;
               }
-                let card = { Value: this.values[i], Suit: this.suits[x], Weight: weight  };   // initialize card object
-                this.deck.push(card); // push each card into deck. this.deck.length == 52;
+                let card = { Value: this.values[i], Suit: this.suits[x], Weight: weight  };            // initialize card object
+                this.deck.push(card);                                                    // push each card into deck. this.deck.length == 52;
             }
         }
   };
 
-  shuffle(){  // shuffle function
+  shuffle(){                                                                        // shuffle function
     for (var i = 0; i < 500; i++)
         {
             let index1 = Math.floor((Math.random() * this.deck.length));
@@ -72,12 +71,10 @@ export class CardsComponent implements OnInit {
     let randomCard = this.deck[randomIndex];
     this.deck.splice(randomIndex, 1);
     this.hand.push(randomCard);
-    console.log(this.hand);
   };
 
 
   filterBySuit(event){
-    console.log(event)
     let newArr = [];
     let copyArr = this.deck
 
@@ -85,15 +82,11 @@ export class CardsComponent implements OnInit {
     this.deck = [];
     this.createDeck();
     this.deck = this.deck.filter((card) => this.filters.suits.includes(card.Suit));   //filter with multiple suits with .filter & .includes proptotypes
-
-    console.log(this.deck)
-
   };
 
   filterByHand(event){
     this.reset();
-    this.shuffle();  // shuffles the deck first, so that it's always random which cards are being spliced every round.
-    console.log(event)
+    this.shuffle();                                                                   // shuffles the deck first, so that it's always random which cards are being spliced every round.
     if(this.hand.length <= event.target.value || this.hand.length <= 52){
       this.deck = this.deck.splice(0, event.target.value)
     };
@@ -117,7 +110,7 @@ export class CardsComponent implements OnInit {
             faceValue = 14;
             break;
         }
-          this.deck = this.deck.filter(card => card.Weight >= faceValue); // made "facevalue" variable to utilize the weight property to compare the value of facecards.
+          this.deck = this.deck.filter(card => card.Weight >= faceValue);                   // made "facevalue" variable to utilize the weight property to compare the value of facecards.
       } else {
           this.deck = this.deck.filter(card => card.Weight >= event.target.value);
       }
